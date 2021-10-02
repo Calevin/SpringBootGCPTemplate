@@ -19,5 +19,27 @@ gcloud config set project <PROJECT_ID>
 
 [Spring initializr configuration](https://start.spring.io/#!type=maven-project&language=java&platformVersion=2.5.5&packaging=jar&jvmVersion=11&groupId=com.calevin&artifactId=springboot-gcp-template&name=springboot-gcp-template&description=Template%20Spring%20Boot%20and%20Google%20Compute%20Platform&packageName=com.calevin.springboot-gcp-template&dependencies=web,lombok,data-jpa,h2)
 
-
+### 3. Add Maven App Engine Plugin
+pom.xml
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" ...>
+  ...
+  <build>
+    <plugins>
+      ...
+      <plugin>
+        <groupId>com.google.cloud.tools</groupId>
+        <artifactId>appengine-maven-plugin</artifactId>
+        <version>2.2.0</version>
+        <configuration>
+          <version>1</version>
+          <projectId>GCLOUD_CONFIG</projectId>
+        </configuration>
+      </plugin>
+      ...
+    </plugins>
+  </build>
+</project>
+```
 
