@@ -43,3 +43,8 @@ pom.xml
 </project>
 ```
 
+### 4. Add App Engine descriptor
+```
+mkdir -p src/main/appengine/
+touch src/main/appengine/app.yam
+```
