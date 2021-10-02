@@ -15,9 +15,9 @@ gcloud config set project <PROJECT_ID>
 * Spring Boot: 2.5.5
 * Packaging: Ja
 * Java: 11
-* Dependencies: Spring Web, Lombok, Spring Data JPA
+* Dependencies: Spring Web, Lombok, Spring Data JPA, H2
 
-[Spring initializr configuration](https://start.spring.io/#!type=maven-project&language=java&platformVersion=2.5.5&packaging=jar&jvmVersion=11&groupId=com.calevin&artifactId=springboot-gcp-template&name=springboot-gcp-template&description=Template%20Spring%20Boot%20and%20Google%20Compute%20Platform&packageName=com.calevin.springboot-gcp-template&dependencies=web,lombok,data-jpa)
+[Spring initializr configuration](https://start.spring.io/#!type=maven-project&language=java&platformVersion=2.5.5&packaging=jar&jvmVersion=11&groupId=com.calevin&artifactId=springboot-gcp-template&name=springboot-gcp-template&description=Template%20Spring%20Boot%20and%20Google%20Compute%20Platform&packageName=com.calevin.springboot-gcp-template&dependencies=web,lombok,data-jpa,h2)
 
 
 
