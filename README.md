@@ -48,3 +48,20 @@ pom.xml
 mkdir -p src/main/appengine/
 touch src/main/appengine/app.yam
 ```
+
+### 5. Add HelloWorldController 
+```java
+// Add the controller.
+@RestController
+class HelloWorldController {
+  @GetMapping("/")
+  public String hello() {
+    return "hello world!";
+  }
+```
+
+### 6. Run local
+http://localhost:8080/
+```
+.\mvnw.cmd -DskipTests spring-boot:run
+```
