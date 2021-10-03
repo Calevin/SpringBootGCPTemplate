@@ -65,3 +65,17 @@ http://localhost:8080/
 ```
 .\mvnw.cmd -DskipTests spring-boot:run
 ```
+
+### 7. Deploy the app to App Engine
+ Initialize the project to be able to run App Engine apps
+```
+gcloud app create --region southamerica-east1
+```
+ Deploy the app
+```
+./mvnw -DskipTests package appengine:deploy
+```
+ Open
+```
+gcloud app browse
+```
