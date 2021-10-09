@@ -10,7 +10,7 @@
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>INFO</level>
         </filter>
-        <log>error.log</log> <!-- Optional : default java.log -->
+        <log>app.log</log> <!-- Optional : default java.log -->
         <resourceType>gae_app</resourceType> <!-- Optional : default: auto-detected, fallback: global -->
         <!--<enhancer>com.example.logging.logback.enhancers.ExampleEnhancer</enhancer> Optional -->
         <!-- <flushLevel>ERROR</flushLevel> Optional : default ERROR -->
