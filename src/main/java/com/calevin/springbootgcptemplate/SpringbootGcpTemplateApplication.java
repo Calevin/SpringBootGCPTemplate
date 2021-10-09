@@ -1,6 +1,7 @@
 package com.calevin.springbootgcptemplate;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,14 +17,13 @@ public class SpringbootGcpTemplateApplication {
 
 	@RestController
 	class HelloWorldController {
+		@Value("${sm://greeting}")
+		private String greeting;
+
 		@GetMapping("/")
 		public String hello() {
-			log.trace("A TRACE Message");
-			log.debug("A DEBUG Message");
-			log.info("An INFO Message");
-			log.warn("A WARN Message");
-			log.error("An ERROR Message");
-			return "hello world!";
+			log.info(" greeting: {}", greeting);
+			return greeting;
 		}
 	}
 }

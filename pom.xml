@@ -15,7 +15,27 @@
 	<description>Template Spring Boot and Google Compute Platform</description>
 	<properties>
 		<java.version>11</java.version>
+		<spring-cloud-gcp.version>2.0.4</spring-cloud-gcp.version>
+		<spring-cloud.version>2020.0.4</spring-cloud.version>
 	</properties>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.google.cloud</groupId>
+				<artifactId>spring-cloud-gcp-dependencies</artifactId>
+				<version>${spring-cloud-gcp.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -29,6 +49,10 @@
 			<groupId>com.google.cloud</groupId>
 			<artifactId>google-cloud-logging-logback</artifactId>
 			<version>0.122.1-alpha</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.cloud</groupId>
+			<artifactId>spring-cloud-gcp-starter-secretmanager</artifactId>
 		</dependency>
 
 		<dependency>
