@@ -15,15 +15,4 @@ public class SpringbootGcpTemplateApplication {
 		SpringApplication.run(SpringbootGcpTemplateApplication.class, args);
 	}
 
-	@RestController
-	class HelloWorldController {
-		@Value("${greeting}")
-		private String greeting;
-
-		@GetMapping("/")
-		public String hello() {
-			log.info(" greeting: {}", greeting);
-			return greeting;
-		}
-	}
 }
