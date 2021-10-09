@@ -17,7 +17,7 @@ public class SpringbootGcpTemplateApplication {
 
 	@RestController
 	class HelloWorldController {
-		@Value("${sm://greeting}")
+		@Value("${greeting}")
 		private String greeting;
 
 		@GetMapping("/")
