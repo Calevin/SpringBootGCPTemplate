@@ -5,8 +5,8 @@ steps:
   - name: maven:3-jdk-11
     entrypoint: mvn
     args: ["package", "-Dmaven.test.skip=true", "-D\"spring-boot.run.profiles\"=prod", "-D\"spring-boot.run.jvmArguments\"=\"-DARG_DATABASE_PASS=$$SECRET_PASSWORD\"","appengine:deploy"]
-    secretEnv: ['$$SECRET_PASSWORD']
+    secretEnv: ['SECRET_PASSWORD']
 availableSecrets:
   secretManager:
     - versionName: projects/spring-boot-gcp-template/secrets/dbpass-prod/versions/1
-      env: '$$SECRET_PASSWORD'
+      env: 'SECRET_PASSWORD'
