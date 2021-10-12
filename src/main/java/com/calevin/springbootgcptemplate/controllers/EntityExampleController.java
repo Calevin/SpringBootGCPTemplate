@@ -1,6 +1,7 @@
 package com.calevin.springbootgcptemplate.controllers;
 
 import com.calevin.springbootgcptemplate.entities.EntityExample;
+import com.calevin.springbootgcptemplate.errors.NotFoundException;
 import com.calevin.springbootgcptemplate.services.EntityExampleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,12 +53,12 @@ public class EntityExampleController {
         log.info("editRecord, id: ", id);
         return entityExampleService
                 .findById(id)
-                .map( p -> {
+                .map(p -> {
                     entityExample.setId(id);
 
                     return ResponseEntity.ok(entityExampleService.save(entityExample));
                 })
-                .orElse(ResponseEntity.noContent().build());
+                .orElseThrow(() -> new NotFoundException(id));
     }
 
     @DeleteMapping("/entityExample/{id}")
