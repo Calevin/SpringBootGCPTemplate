@@ -6,7 +6,6 @@ steps:
     - '-Dsonar.projectKey=com.calevin:springboot-gcp-template'
     - '-Dsonar.organization=calevin'
     - '-Dsonar.sources=.'
-tags: ['cloud-builders-community']
   - name: maven:3-jdk-11
     entrypoint: mvn
     args: ["test"]
