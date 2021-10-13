@@ -6,4 +6,4 @@ steps:
       - 'SONAR_TOKEN=${_SONAR_TOKEN}'
   - name: maven:3-jdk-11
     entrypoint: mvn
-    args: ["package", "-Dmaven.test.skip=true", "-Dspring.profiles.active=dev", "appengine:deploy"]
+    args: ["-Dmaven.test.skip=true", "-Dspring.profiles.active=dev", "appengine:deploy"]
