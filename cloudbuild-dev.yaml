@@ -1,4 +1,12 @@
 steps:
+  - name: 'gcr.io/$PROJECT_ID/sonar-scanner:latest'
+    args:
+    - '-Dsonar.host.url=https://sonarcloud.io'
+    - '-Dsonar.login=${_SONAR_TOKEN}'
+    - '-Dsonar.projectKey=com.calevin:springboot-gcp-template'
+    - '-Dsonar.organization=calevin'
+    - '-Dsonar.sources=.'
+  tags: ['cloud-builders-community']
   - name: maven:3-jdk-11
     entrypoint: mvn
     args: ["test"]
