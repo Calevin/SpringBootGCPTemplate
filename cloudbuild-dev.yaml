@@ -1,9 +1,69 @@
 steps:
-  - name: maven:3-jdk-11
-    entrypoint: mvn
-    args: ["verify", "-Dspring.profiles.active=dev", "org.sonarsource.scanner.maven:sonar-maven-plugin:sonar","-Dsonar.projectKey=Calevin_SpringBootGCPTemplate"]
-    env:
-      - 'SONAR_TOKEN=${_SONAR_TOKEN}'
-  - name: maven:3-jdk-11
-    entrypoint: mvn
-    args: ["-Dmaven.test.skip=true", "-Dspring.profiles.active=dev", "appengine:deploy"]
+###########################################################
+# Step 1: Retrieve the cached .m2 directory from GCS
+###########################################################
+- name: 'gcr.io/cloud-builders/gsutil'
+  args:
+    - '-m'
+    - 'rsync'
+    - '-r'
+    - 'gs://${_BUCKET}/cache/.m2'
+    - '/cache/.m2'
+  volumes:
+    - path: '/cache/.m2'
+      name: 'm2_cache'
+
+#- name: gcr.io/cloud-builders/gcloud:latest
+#  entrypoint: "ls"
+#  args: ["-lah","/workspace","-lah","/cache/.m2"]
+#  volumes:
+#    - path: '/cache/.m2'
+#      name: 'm2_cache'
+
+###########################################################
+# Step 2: Build, Test, and Verify
+###########################################################
+- name: 'gcr.io/cloud-builders/mvn'
+  args:
+    - 'clean'
+    - 'verify'
+    - '-Dspring.profiles.active=dev'
+    - 'org.sonarsource.scanner.maven:sonar-maven-plugin:sonar'
+    - '-Dsonar.projectKey=Calevin_SpringBootGCPTemplate'
+  volumes:
+    - path: '/cache/.m2'
+      name: 'm2_cache'
+  env:
+    - 'SONAR_TOKEN=${_SONAR_TOKEN}'
+    - 'MAVEN_OPTS=-Dmaven.repo.local=/cache/.m2'
+
+###########################################################
+# Step 3: Deploy
+###########################################################
+- name: maven:3-jdk-11
+  entrypoint: mvn
+  args: ["-Dmaven.test.skip=true", "-Dspring.profiles.active=dev", "appengine:deploy"]
+  volumes:
+    - path: '/cache/.m2'
+      name: 'm2_cache'
+  env:
+    - 'MAVEN_OPTS=-Dmaven.repo.local=/cache/.m2'
+
+###########################################################
+# Step 4: Update cached .m2 directory on GCS with any
+#         additional dependencies downloaded during the
+#         build.
+###########################################################
+- name: 'gcr.io/cloud-builders/gsutil'
+  args:
+    - '-m'
+    - 'rsync'
+    - '-r'
+    - '/cache/.m2'
+    - 'gs://${_BUCKET}/cache/.m2/'
+  volumes:
+    - path: '/cache/.m2'
+      name: 'm2_cache'
+
+substitutions:
+  _BUCKET: 'spring-boot-gcp-template_cloudbuild'
