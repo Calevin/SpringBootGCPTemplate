@@ -1,9 +1,6 @@
 steps:
   - name: maven:3-jdk-11
     entrypoint: mvn
-    args: ["test"]
-  - name: maven:3-jdk-11
-    entrypoint: mvn
     args: ["verify", "-Dspring.profiles.active=dev", "org.sonarsource.scanner.maven:sonar-maven-plugin:sonar","-Dsonar.projectKey=Calevin_SpringBootGCPTemplate"]
     env:
       - 'SONAR_TOKEN=${_SONAR_TOKEN}'
