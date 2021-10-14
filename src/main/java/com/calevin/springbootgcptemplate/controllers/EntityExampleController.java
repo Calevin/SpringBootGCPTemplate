@@ -6,6 +6,7 @@ import com.calevin.springbootgcptemplate.dtos.entityexample.GetEntityExampleDTO;
 import com.calevin.springbootgcptemplate.entities.EntityExample;
 import com.calevin.springbootgcptemplate.errors.NotFoundException;
 import com.calevin.springbootgcptemplate.services.EntityExampleService;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,10 +19,11 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @RestController
+@AllArgsConstructor
 public class EntityExampleController {
 
     private final EntityExampleService entityExampleService;
-    @Autowired
+
     protected EntityExampleConverterDTO converterDTO;
 
     @Autowired
@@ -56,7 +58,8 @@ public class EntityExampleController {
 
     @PostMapping("/entityExample")
     public ResponseEntity<EntityExample> newRecord(@RequestBody CreateEntityExampleDTO createEntityExampleDTO) {
-        log.info("newRecord");
+        log.info("newRecord, createEntityExampleDTO: {}", createEntityExampleDTO);
+        log.info("newRecord, converterDTO: {}", converterDTO);
         EntityExample newEntityExample = converterDTO.converterToEntityExample(createEntityExampleDTO);
         log.info("newRecord, newEntityExample: {}", newEntityExample);
         return ResponseEntity.status(HttpStatus.CREATED).body(entityExampleService.save(newEntityExample));
