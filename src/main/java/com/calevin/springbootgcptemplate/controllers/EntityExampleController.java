@@ -19,7 +19,6 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @RestController
-@AllArgsConstructor
 public class EntityExampleController {
 
     private final EntityExampleService entityExampleService;
@@ -27,8 +26,9 @@ public class EntityExampleController {
     protected EntityExampleConverterDTO converterDTO;
 
     @Autowired
-    public EntityExampleController(EntityExampleService entityExampleService) {
+    public EntityExampleController(EntityExampleService entityExampleService, EntityExampleConverterDTO converterDTO) {
         this.entityExampleService = entityExampleService;
+        this.converterDTO = converterDTO;
     }
 
     @GetMapping("/entityExample")

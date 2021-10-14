@@ -7,6 +7,7 @@ import com.calevin.springbootgcptemplate.controllers.EntityExampleController;
 import com.calevin.springbootgcptemplate.repositories.CategoryExampleRepository;
 import com.calevin.springbootgcptemplate.repositories.EntityExampleRepository;
 import com.calevin.springbootgcptemplate.services.EntityExampleService;
+import lombok.AllArgsConstructor;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,15 +16,23 @@ import org.springframework.boot.test.context.SpringBootTest;
 class SpringbootGcpTemplateApplicationTests {
 
 	@Autowired
+	public SpringbootGcpTemplateApplicationTests(EntityExampleController entityExampleController
+			, EntityExampleRepository entityExampleRepository
+			, CategoryExampleRepository categoryExampleRepository
+			, EntityExampleService entityExampleService) {
+
+		this.entityExampleController = entityExampleController;
+		this.entityExampleRepository = entityExampleRepository;
+		this.categoryExampleRepository = categoryExampleRepository;
+		this.entityExampleService = entityExampleService;
+	}
+
 	private EntityExampleController entityExampleController;
 
-	@Autowired
 	private EntityExampleRepository entityExampleRepository;
 
-	@Autowired
 	private CategoryExampleRepository categoryExampleRepository;
 
-	@Autowired
 	private EntityExampleService entityExampleService;
 
 	@Test
