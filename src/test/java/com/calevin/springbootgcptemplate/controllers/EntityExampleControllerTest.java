@@ -101,7 +101,7 @@ class EntityExampleControllerTest {
                 .build();
 
         // MOCK
-        var entityExampleMock = createEntityExample(null, name, description, null);
+        var entityExampleMock = createEntityExample(null, name, description, 11L);
         var newEntityExampleMock =  entityExampleMock.toBuilder().id(exampleId).build();
         when(entityExampleService.save(entityExampleMock)).thenReturn(newEntityExampleMock);
 
@@ -130,7 +130,7 @@ class EntityExampleControllerTest {
                 .build();
 
         // MOCK
-        var entityFound = createEntityExample(exampleId, newName, description, null);
+        var entityFound = createEntityExample(exampleId, newName, description, categoryId);
         when(entityExampleService.findById(exampleId)).thenReturn(Optional.of(entityFound));
         when(entityExampleService.save(entityFound)).thenReturn(entityFound);
 
@@ -171,7 +171,7 @@ class EntityExampleControllerTest {
                 .id(id)
                 .description(description)
                 .name(name)
-                .category(categoryId == null ? null : createCategoryExample(categoryId, null, null))
+                .category(categoryId == null ? null : CategoryExample.builder().id(categoryId).build())
                 .build();
     }
 
