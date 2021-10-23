@@ -6,7 +6,7 @@ import com.calevin.springbootgcptemplate.dtos.entityexample.GetEntityExampleDTO;
 import com.calevin.springbootgcptemplate.entities.EntityExample;
 import com.calevin.springbootgcptemplate.errors.NotFoundException;
 import com.calevin.springbootgcptemplate.services.EntityExampleService;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,17 +19,12 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @RestController
+@RequiredArgsConstructor
 public class EntityExampleController {
 
     private final EntityExampleService entityExampleService;
 
-    protected EntityExampleConverterDTO converterDTO;
-
-    @Autowired
-    public EntityExampleController(EntityExampleService entityExampleService, EntityExampleConverterDTO converterDTO) {
-        this.entityExampleService = entityExampleService;
-        this.converterDTO = converterDTO;
-    }
+    private final EntityExampleConverterDTO converterDTO;
 
     @GetMapping("/entityExample")
     public ResponseEntity<List<GetEntityExampleDTO>> getAll() {

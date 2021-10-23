@@ -13,3 +13,15 @@ insert into entity_example
 ('Club Atlético Atlanta'      , 2 , 'Es una institución social, cultural y deportiva argentina, radicada en el barrio de Villa Crespo'                                                                                       ),
 ('Club Atlético Belgrano'     , 2 , 'Es una institución deportiva de la ciudad de Córdoba en Argentina. Fue fundado oficialmente un lunes 19 de marzo de 1905'                                                               ),
 ('Club Atlético San Miguel'   , 3 , 'Es un club cuya actividad de mayor referencia es el fútbol. Fue fundado el 7 de agosto de 1922. Tiene su sede social en el Partido de San Miguel.'                                      );
+
+insert into user_roles (user_id, roles) values (1,'USER');
+insert into user_roles (user_id, roles) values (1,'ADMIN');
+--insert into user_roles (user_id, roles) values (2,'USER');
+
+-- password: Admin1
+insert into users (id, username, password, creation_date, last_date_password_modification)
+values (1, 'admin', '$2a$10$vPaqZvZkz6jhb7U7k/V/v.5vprfNdOnh4sxi/qpPRkYTzPmFlI9p2', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+-- password: User1
+--insert into users (id, username, password, creation_date, last_date_password_modification)
+--values (2, 'user', '$2a$10$cIvIRhQBmF57i3cEtOxi8OyOqPD19KcRNcHrj1Goi9y/3kp5YfZim', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);

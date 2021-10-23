@@ -15,3 +15,16 @@ create table entity_example (
     category_example_id int not null,
     foreign key (category_example_id) references category_example(id)
 );
+
+create table user_roles (
+    user_id int,
+    roles varchar(30) not null
+);
+
+create table users (
+    id int primary key auto_increment,
+    username varchar(30) not null,
+    password varchar(200),
+    creation_date DATETIME,
+    last_date_password_modification DATETIME
+);
